@@ -1,0 +1,17 @@
+* {
+  background: ;
+  color: ;
+}
+
+#workspaces button.focused {
+  background: ;
+  color: ;
+}
+
+#custom-spotify,
+#clock,
+#pulseaudio,
+#cpu,
+#memory {
+  color: ;
+}

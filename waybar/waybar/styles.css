@@ -1,3 +1,4 @@
+@import "colors.css";;
 * {
 	font-family: "JetBrainsMono Nerd Font";
 	font-weight: bold;
@@ -34,7 +35,14 @@
     padding-right: 10px;
     padding-left: 10px;
   }
-
+  #custom-ip {
+    padding: 0 8px;
+    font-size: 14px;
+    color: #ffffff;
+    background: #2e3440;
+    border-radius: 4px;
+    margin: 0 4px;
+}
   #custom-launcher {
     font-size: 20px;
     color: #00bfff; /* deepskyblue */

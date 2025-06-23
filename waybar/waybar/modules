@@ -194,6 +194,21 @@
 	}	
 },
 // GROUP
+"group/my_apps": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/vesktop",
+            "custom/thunar",
+            "custom/codium",
+            "custom/telegram",
+			"custom/facebook",
+			"custom/zalo"
+        ],
+        "drawer": {
+            "transition-duration": 0,
+            "transition-left-to-right": false
+        }
+},
 "group/motherboard": {
 	"orientation": "horizontal",
 	"modules": [
@@ -238,6 +253,8 @@
 },
 "group/connections": {
 	"orientation": "inherit",
+	//"orientation": "horizontal",
+
 	"drawer": {
 		"transition-duration": 500,
 		"children-class": "bluetooth",
@@ -246,6 +263,7 @@
 	"modules": [
 		"network",
 		"bluetooth",
+		"custom/ip" // Module mới hiển thị địa chỉ IP
 	]
 },                                     
 "backlight": {
@@ -475,8 +493,9 @@
 	"format-disconnected": "󰌙",
 	"tooltip-format": "{ipaddr}  {bandwidthUpBits}  {bandwidthDownBits}",
 	"format-linked": "󰈁 {ifname} (No IP)",
+	"interface": "wlan0",
 	"tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
-	"tooltip-format-ethernet": "{ifname} 󰌘",
+	"tooltip-format-ethernet": "{ifname}: {ipaddr}",
 	"tooltip-format-disconnected": "󰌙 Disconnected",
 	"max-length": 30,
 	"format-icons": [
@@ -687,11 +706,36 @@
         "tooltip": true,
         "tooltip-format": "Telegram",
 },
-            
+"custom/facebook": {
+        "format": "📱",
+        "exec": "echo 'Facebook'",
+        "on-click": "env GTK_IM_MODULE=ibus QT_IM_MODULE=ibus XMODIFIERS=@im=ibus microsoft-edge-stable --enable-wayland-ime  https://www.facebook.com",
+        "return-type": "text",
+		"tooltip-format": "Facebook",
+        "tooltip": true
+
+},
+"custom/zalo": {
+        "format": "💬",
+        "exec": "echo 'zalo'",
+        "on-click": "env GTK_IM_MODULE=ibus QT_IM_MODULE=ibus XMODIFIERS=@im=ibus microsoft-edge-stable --enable-wayland-ime  https://chat.zalo.me/",
+        "return-type": "text",
+		"tooltip-format": "zalo",
+        "tooltip": true
+
+},
+
 // This is a custom cava visualizer
 "custom/cava_mviz": {
 	"exec": "~/.config/hypr/scripts/WaybarCava.sh",
 	"format": "{}"
+},
+"custom/ip": {
+        "format": "{}",
+        "interval": 5,
+        "exec": "~/.config/waybar/scripts/ip_address.sh",
+        "return-type": "text",
+        "tooltip": false
 },
 "custom/playerctl": {
 	"format": "<span>{}</span>",

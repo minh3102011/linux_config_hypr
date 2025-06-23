@@ -10,4 +10,6 @@
   :monitor 0
   :stacking "fg"
   :geometry (geometry :x "8px" :y "32px" :width "250px" :anchor "bottom right")
+  :window-type "dock"                   ;; <- bắt buộc
+  :input-region "0x0+0+0"
   (activate-linux))
