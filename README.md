@@ -11,3 +11,5 @@ eww daemon && eww open activate-linux
 kitten @ launch --title Output --keep-focus zsh
 
 fcitx5 & disown
+
+sudo rsync -aAXv #restore
