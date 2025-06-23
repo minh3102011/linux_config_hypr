@@ -202,7 +202,8 @@
             "custom/codium",
             "custom/telegram",
 			"custom/facebook",
-			"custom/zalo"
+			"custom/zalo",
+			"custom/edge",
         ],
         "drawer": {
             "transition-duration": 0,
@@ -684,9 +685,9 @@
 },  
 "custom/vesktop": {
         "format": " ",
-        "on-click": "/usr/bin/vesktop",
+        "on-click": "flatpak run com.microsoft.Edge --ozone-platform=wayland https://discord.com/channels/@me",
         "tooltip": true,
-        "tooltip-format": "Vesktop",
+        "tooltip-format": "Discord",
 },
 "custom/thunar": {
         "format": " ",
@@ -709,16 +710,25 @@
 "custom/facebook": {
         "format": "📱",
         "exec": "echo 'Facebook'",
-        "on-click": "env GTK_IM_MODULE=ibus QT_IM_MODULE=ibus XMODIFIERS=@im=ibus microsoft-edge-stable --enable-wayland-ime  https://www.facebook.com",
+        "on-click": " flatpak run com.microsoft.Edge --ozone-platform=wayland https://www.facebook.com",
         "return-type": "text",
 		"tooltip-format": "Facebook",
+        "tooltip": true
+
+},
+"custom/edge": {
+        "format": "🌐",
+        "exec": "echo 'Edge'",
+        "on-click": " flatpak run com.microsoft.Edge --ozone-platform=wayland ",
+        "return-type": "text",
+		"tooltip-format": "Edge",
         "tooltip": true
 
 },
 "custom/zalo": {
         "format": "💬",
         "exec": "echo 'zalo'",
-        "on-click": "env GTK_IM_MODULE=ibus QT_IM_MODULE=ibus XMODIFIERS=@im=ibus microsoft-edge-stable --enable-wayland-ime  https://chat.zalo.me/",
+        "on-click": "  flatpak run com.microsoft.Edge --ozone-platform=wayland https://chat.zalo.me/",
         "return-type": "text",
 		"tooltip-format": "zalo",
         "tooltip": true

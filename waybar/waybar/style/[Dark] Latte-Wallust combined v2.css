@@ -327,7 +327,15 @@ window#waybar {
     font-size: 12px;
     margin: 0 4px;
 }
-
+#custom-edge {
+    border-radius: 5px;
+    padding-left: 8px;
+    background: #F8BBD0;
+    color: #000000;
+    padding-right: 13px;
+    font-size: 12px;
+    margin: 0 4px;
+}
 
 
 #custom-thunar {
