@@ -40,6 +40,7 @@ window#waybar {
     padding-right: 10px;
 }
 
+
 /* Workspace */
 
 #taskbar button,
@@ -249,23 +250,36 @@ window#waybar {
 }
 
 #custom-music {
-    background: #F8BBD0; /* Hồng trung tính */
-    border-radius: 10px;
-    margin-top: 3px;
-    margin-bottom: 3px;
-    padding-left: 10px;
-    padding-right: 10px;
+  padding: 0 8px;
+  margin: 0 6px;
+  font-size: 16px;
+  border-radius: 6px;
+  color: #2E1A47;
+}
+#custom-playerctl {
+  padding: 4px 8px;
+  border-radius: 6px;
+  background-color: #e799b8;
+  color: #2E1A47;
+  font-size: 13px;
+}
+#custom-playerctl.Playing {
+  font-weight: bold;
+  color: #FF99CC;
 }
 
-#custom-music.Playing {
-    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.377);
-    font-weight: bold;
-    color: #FFF0F5; /* Hồng rất nhạt */
+#custom-weather {
+  padding: 0 8px;
+  margin: 0 6px;
+  font-size: 16px;
+  background-color: #F8BBD0;
+  border-radius: 6px;
+  color: #2E1A47;
 }
 
-#custom-music.Paused,
-#custom-music.Stopped {
-    background: #FFE6F0; /* Hồng nhạt Sakura */
+#custom-music:hover {
+  background-color: #FF99CC;
+  color: white;
 }
 
 #language {
@@ -277,7 +291,7 @@ window#waybar {
 }
 
 #custom-swaync {
-    color: #2E1A47; /* Tím đậm nhẹ */
+    color: #2E1A47;
     margin-right: 5px;
     margin-left: 5px;
     font-size: 12px;

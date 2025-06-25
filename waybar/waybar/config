@@ -21,13 +21,17 @@
 	],
 "modules-center": [
 	"hyprland/workspaces#kanji",
+	//"custom/playerctl",
+	"custom/separator#blank_1",
+	"custom/music",
 	"custom/separator#blank_1",
 	"clock",
-	"custom/swaync",
 	"custom/separator#blank_1",
 	"idle_inhibitor",
 	],
 "modules-right": [
+	"custom/weather",
+	"custom/swaync",
 	"custom/cava_mviz",
 	"custom/separator#blank_1",
 	"tray",
@@ -36,10 +40,10 @@
 	"backlight",
 	"pulseaudio",
 	"custom/separator#dot-line",
-	"hyprland/language",
 	"battery",
 	"custom/separator#blank_1",
 	"custom/power",
+	
 	],
 
 }

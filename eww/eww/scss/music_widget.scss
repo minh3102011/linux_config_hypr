@@ -1,0 +1,33 @@
+.music-panel {
+  background-color: rgba(30, 30, 30, 0.95);
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 1px solid #444;
+  margin: 10px;
+  font-size: 14px;
+  color: white;
+  align-items: center;
+}
+
+.character-spin {
+  width: 64px;
+  height: 64px;
+  background-image: url("/home/bien/.config/eww/assets/spin-sprite.png");
+  background-repeat: no-repeat;
+  animation: spinframes 1s steps(10) infinite;
+  margin-right: 12px;
+}
+
+@keyframes spinframes {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -640px 0;  // 10 frames × 64px
+  }
+}
+
+.music-text {
+  font-weight: bold;
+}
+

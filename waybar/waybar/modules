@@ -760,6 +760,9 @@
 	"on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
 	"smooth-scrolling-threshold": 1,
 },
+
+
+
 "custom/power": {
 	"format": "⏻ ",
 	"on-click": "~/.config/hypr/scripts/Wlogout.sh",
@@ -768,27 +771,29 @@
 	"tooltip-format": "Left Click: Logout Menu\nRight Click: Change Blur",
 },
 "custom/swaync": {
-	"tooltip": true,
-	"tooltip-format": "Left Click: Launch Notification Center\nRight Click: Do not Disturb",
-	"format": "{icon} {}",
-	"format-icons": {
-		"notification": "<span foreground='red'><sup></sup></span>",
-		"none": "",
-		"dnd-notification": "<span foreground='red'><sup></sup></span>",
-		"dnd-none": "",
-		"inhibited-notification": "<span foreground='red'><sup></sup></span>",
-		"inhibited-none": "",
-		"dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
-		"dnd-inhibited-none": ""
-	},
-	"return-type": "json",
-	"exec-if": "which swaync-client",
-	"exec": "swaync-client -swb",
-	"on-click": "sleep 0.1 && swaync-client -t -sw",
-	"on-click-right": "swaync-client -d -sw",
-	"escape": true,
+  "tooltip": true,
+  "tooltip-format": "Left Click: Launch Notification Center\nRight Click: Do not Disturb",
+  "format": "{icon} {}",
+  "format-icons": {
+    "notification": "<span foreground='red'><sup></sup></span>",
+    "none": "",
+    "dnd-notification": "<span foreground='red'><sup></sup></span>",
+    "dnd-none": "",
+    "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+    "inhibited-none": "",
+    "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+    "dnd-inhibited-none": ""
+  },
+  "return-type": "json",
+  "exec-if": "which swaync-client",
+  "exec": "swaync-client -swb",                  // Hiển thị trạng thái
+  "on-click": "sleep 0.1 && swaync-client -t -sw", // Toggle control center
+  "on-click-right": "swaync-client -d -sw",       // Bật/tắt Do Not Disturb
+  "escape": true
 },
-// NOTE:! This is only for Arch and Arch Based Distros  depend: pacman-contrib
+
+
+
 "custom/updater": {
 	"format": " {}",
 	"exec": "checkupdates | wc -l",
@@ -798,6 +803,15 @@
 	"tooltip": true,
 	"tooltip-format": "Left Click: Update System\nArch Linux Only",
 },
+
+"custom/music": {
+  "format": "🎵",
+  "exec": "echo '🎵'",
+  "tooltip": true,
+  "on-click": "eww open music-window",
+  "on-click-right": "eww close music-window"
+},
+
 "custom/weather": {
 	"format": "{}",
 	"format-alt": "{alt}: {}",

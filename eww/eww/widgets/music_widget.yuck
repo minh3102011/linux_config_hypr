@@ -1,0 +1,9 @@
+(defwidget music_widget []
+  (box
+    :class "music-panel"
+    :orientation "horizontal"
+    (box :class "character-spin")
+    (label :text "Now Playing" :class "music-text")
+  )
+)
+
