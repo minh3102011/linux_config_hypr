@@ -6,7 +6,7 @@
 #  sleep 1
 #done
 fcitx5 & disown
-ags & disown
+ags & disown > ~/log.txt
 #~/.config/hypr/scripts/wallpaper-loop.sh &
 #sleep 10
 #waybar & disown
