@@ -1,7 +1,7 @@
 hyprpm add https://github.com/KZDKM/Hyprspace                                                                                                                                                                                           
 hyprpm enable Hyprspace
 
-eww, hyprspace, hyprpaper
+eww, hyprspace, hyprpaper, waybar, ags, hyprpicker
 ranger
 
 eww daemon && eww open activate-linux
