@@ -6,7 +6,14 @@ import { icon } from "lib/utils"
 const mpris = await Service.import("mpris")
 const players = mpris.bind("players")
 const { media } = options.quicksettings
-
+const frames = [
+  "/home/bien/.config/ags/assets/frame_0.png",
+  "/home/bien/.config/ags/assets/frame_1.png",
+  "/home/bien/.config/ags/assets/frame_2.png",
+"/home/bien/.config/ags/assets/frame_3.png",
+"/home/bien/.config/ags/assets/frame_4.png",
+"/home/bien/.config/ags/assets/frame_5.png",
+]
 function lengthStr(length: number) {
     const min = Math.floor(length / 60)
     const sec = Math.floor(length % 60)
@@ -16,22 +23,34 @@ function lengthStr(length: number) {
 
 const Player = (player: MprisPlayer) => {
     const cover = Widget.Box({
-        class_name: "cover",
-        vpack: "start",
-        css: Utils.merge([
-            player.bind("cover_path"),
-            player.bind("track_cover_url"),
-            media.coverSize.bind(),
-        ], (path, url, size) => {
-            const gifPath = path?.endsWith(".gif") ? path : "/home/bien/.config/ags/assets/miku.gif"; // Replace with your GIF path
-            const imagePath = path && !path.endsWith(".gif") ? path : url;
-            return `
+    class_name: "cover",
+    vpack: "start",
+    css: media.coverSize.bind().as(size => `
+        min-width: ${size}px;
+        min-height: ${size}px;
+    `),
+    setup: self => {
+        let currentFrame = 0
+
+        const updateFrame = () => {
+            const path = frames[currentFrame]
+            currentFrame = (currentFrame + 1) % frames.length
+
+            const size = media.coverSize.value
+            self.css = `
                 min-width: ${size}px;
                 min-height: ${size}px;
-                background-image: url('${gifPath || imagePath || ""}');
-            `;
-        }),
-    })
+                background-image: url('${path}');
+                background-size: cover;
+                background-position: center;
+            `
+        }
+
+        updateFrame()
+        self.poll(100, updateFrame)
+    },
+})
+
     const title = Widget.Label({
         class_name: "title",
         max_width_chars: 20,
