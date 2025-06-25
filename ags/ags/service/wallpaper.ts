@@ -37,7 +37,7 @@ class Wallpaper extends Service {
                 WP_FILE,
             ]).then(() => {
                 this.changed("wallpaper")
-                // Gọi matugen để đổi màu (nếu được dùng)
+                // Gọi matugen để đổi màu
                 sh("matugen --dry-run -j hex image " + WP_FILE).catch(err => console.error("matugen error:", err))
             }).catch(err => {
                 console.error("swww error:", err);
@@ -75,18 +75,24 @@ class Wallpaper extends Service {
         await sh(`mkdir -p "${WP_DIR}"`).catch(() => null);
         await sh(`chmod -R u+rw "${WP_DIR}"`).catch(() => null);
 
-        // Thử xóa file cũ để tránh xung đột
+        // Thử xóa file cũ để tránh khóa
         await sh(`rm -f "${WP_FILE}"`).catch(err => console.warn("Failed to remove old file:", err));
 
         try {
-            // Sao chép file
+            // Sao chép file với xử lý lỗi chi tiết
             const cpCommand = `cp "${path}" "${WP_FILE}"`;
             const cpResult = await Utils.execAsync(cpCommand);
             console.log("Copy command output:", cpResult);
             if (!(await Utils.execAsync(`test -f "${WP_FILE}"`))) {
-                console.error("Failed to copy file to", WP_FILE, "after cp command. Check permissions or locks.");
-                this.#blockMonitor = false;
-                return;
+                console.error("Failed to copy file to", WP_FILE, "after cp command. Attempting to fix permissions...");
+                // Thử cấp quyền lại và sao chép lần nữa
+                await sh(`chmod u+rw "${WP_FILE}" 2>/dev/null || chmod u+rw "${WP_DIR}"`);
+                await Utils.execAsync(cpCommand).catch(err => console.error("Retry copy failed:", err));
+                if (!(await Utils.execAsync(`test -f "${WP_FILE}"`))) {
+                    console.error("Copy still failed after retry. Check locks or file system.");
+                    this.#blockMonitor = false;
+                    return;
+                }
             }
             this.#wallpaper();
         } catch (error) {
@@ -106,7 +112,7 @@ class Wallpaper extends Service {
             }
             const randomFile = files[Math.floor(Math.random() * files.length)];
             const fullPath = `${Cache}/${randomFile}`;
-            await this.#setWallpaper(fullPath); // Gọi setWallpaper để đảm bảo đổi màu
+            await this.#setWallpaper(fullPath); // Gọi setWallpaper
         } catch (error) {
             console.error("Error getting random image:", error);
         }
@@ -132,9 +138,9 @@ class Wallpaper extends Service {
             .then(this.#wallpaper)
             .catch(() => null)
 
-        // Đổi ảnh mỗi 1 phút (60 giây)
+        // Đổi ảnh mỗi 1 phút (60 giây) với xử lý lỗi
         setInterval(() => {
-            this.#getRandomImageFromCache();
+            this.#getRandomImageFromCache().catch(err => console.error("Interval error:", err));
         }, 60000);
     }
 
