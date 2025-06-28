@@ -13,3 +13,5 @@ kitten @ launch --title Output --keep-focus zsh
 fcitx5 & disown
 
 sudo rsync -aAXv #restore
+
+need dart-sass to run this config ags
