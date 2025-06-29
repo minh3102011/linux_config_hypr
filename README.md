@@ -15,3 +15,5 @@ fcitx5 & disown
 sudo rsync -aAXv #restore
 
 need dart-sass to run this config ags
+
+flatpak override md.obsidian.Obsidian --socket=wayland
