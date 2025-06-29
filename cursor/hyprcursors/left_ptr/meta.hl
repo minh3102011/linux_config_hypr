@@ -1,6 +1,0 @@
-resize_algorithm = bilinear
-hotspot_x = 0.05 # e.g., 10/32
-hotspot_y = 0.1296875 # e.g., 5/i32
-define_override = default
-define_override = arrow
-define_size = 64, image64.png

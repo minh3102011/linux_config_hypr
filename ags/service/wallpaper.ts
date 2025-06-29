@@ -141,7 +141,7 @@ class Wallpaper extends Service {
         // Đổi ảnh mỗi 1 phút (60 giây) với xử lý lỗi
         setInterval(() => {
             this.#getRandomImageFromCache().catch(err => console.error("Interval error:", err));
-        }, 60000);
+        }, 180000);
     }
 
     readonly random = async () => { await this.#getRandomImageFromCache() } // Đảm bảo bất đồng bộ

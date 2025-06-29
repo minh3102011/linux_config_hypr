@@ -1,7 +1,0 @@
-resize_algorithm = bilinear
-hotspot_x = 0.05# e.g., 12/32
-hotspot_y = 0.1296875 # e.g., 8/32
-define_override = pointer
-define_override = hand2
-define_size = 64, image64.png
-

@@ -1,267 +1,399 @@
-/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Catppuccin Latte - Wallust - v2 */
-
-@define-color white      	#F2F2F2;
-@define-color black      	#000000;
-@define-color text       	#FFFFFF;
-@define-color lightgray  	#686868;
-@define-color darkgray   	#353535;
-
-@define-color transparent	rgba(1, 1, 1, 0.5);
-@define-color teal-trans	rgba(1, 117, 84, 0.5);
-@define-color cyan			rgba(53, 140, 169, 1);
-
-@define-color background-module     @background;
-@define-color background-module2	@color11;
-@define-color border-color          @color12;
-@define-color button-color          @color10;
-@define-color button-hover          @color13;
-
-@import '../../.config/waybar/wallust/colors-waybar.css';
-@import "../waybar/style/catppuccin-themes/latte.css";
-
 * {
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
-	min-height: 0;  
-    /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
+    min-height: 0;
     font-size: 97%;
     font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
 }
 
 window#waybar {
-    background: @background;
-    border-radius:15px;
-	padding-top: 2px;
-	padding-bottom: 0px;
-	padding-right: 4px;
-	padding-left: 4px;
+    background-color: rgba(0, 0, 0, 0);
 }
 
-tooltip {
-    background: #1e1e2e;
-    border-radius: 12px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: @border-color;
-    color: #ffffff;
+.modules-left {
+    border: 2px solid #FFF0F5; /* Hồng rất nhạt */
+    background-color: #FFE6F0; /* Hồng nhạt Sakura */
+    border-radius: 8px;
+    padding-right: 10px;
+    padding-left: 10px;
 }
 
-#workspaces {
-    padding: 0px 1px;
-    border-radius: 15px;
-    border-bottom: 2px solid @border-color;
-    font-weight: bold;
-    font-style: normal;
-    opacity: 0.8;
+.modules-center {
+    border: 2px solid #FFE6F0; /* Hồng nhạt Sakura */
+    background-color: #FFF0F5; /* Hồng rất nhạt */
+    border-radius: 8px;
+    padding-right: 10px;
+    padding-left: 0px;
 }
 
-#taskbar button,   
+.modules-right {
+    border: 2px solid #FFF0F5; /* Hồng rất nhạt */
+    background-color: #FFE6F0; /* Hồng nhạt Sakura */
+    border-radius: 8px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+#custom-launcher {
+    font-size: 20px;
+    color: #FF99CC; /* Hồng đậm Sakura */
+    padding-right: 10px;
+}
+
+
+/* Workspace */
+
+#taskbar button,
 #workspaces button {
-    color: @foreground;
+    color: #2E1A47; /* Tím đậm nhẹ */
     box-shadow: none;
-	text-shadow: none;
-    border-radius: 30px;
+    text-shadow: none;
+    padding: 0px;
+    border-radius: 9px;
     padding-left: 4px;
     padding-right: 4px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#taskbar button.active,
-#workspaces button.active {
-    color: #ffd700;
-    border-radius: 50%;
-    background-color: black;
-    border-radius: 15px;
-    padding-left: 8px;
-    padding-right: 8px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#workspaces button.focused {
-    color: #d8dee9;
-}
-
-#workspaces button.urgent {
-    color: #11111b;
-    border-radius: 10px;
+    margin-top: 5px;
+    margin-bottom: 4px;
+    margin-left: 5px;
 }
 
 #taskbar button:hover,
 #workspaces button:hover {
-    color: #ffd700;
     border-radius: 10px;
- 	padding-left: 2px;
-    padding-right: 2px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+    color: #FFF0F5; /* Hồng rất nhạt */
+    background-color: #F8BBD0; /* Hồng trung tính */
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
-/*-----module groups----*/
-.modules-center {
-    background-color: @background-module2;
+#workspaces button.persistent {
+    color: #2E1A47; /* Tím đậm nhẹ */
     border-radius: 10px;
-    padding: 4px;
-	border-bottom: 2px solid @border-color;
-	border-right: 1px solid @button-hover;
-	border-left: 1px solid @button-hover;
 }
 
-#backlight,
-#backlight-slider,
-#battery,
-#bluetooth,
-#clock,
+#taskbar button.active,
+#workspaces button.active {
+    color: #FFF0F5; /* Hồng rất nhạt */
+    background-color: #FF99CC; /* Hồng đậm Sakura */
+    border-radius: 10px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+#workspaces button.urgent {
+    color: #FF4D4D; /* Đỏ nhạt, giữ nguyên */
+    border-radius: 0px;
+}
+
 #cpu,
-#disk,
-#idle_inhibitor,
-#keyboard-state,
 #memory,
-#mode,
-#mpris,
-#network,
-#power-profiles-daemon,
-#pulseaudio,
-#pulseaudio-slider,
-#taskbar,
-#temperature,
-#tray,
-#window,
-#wireplumber,
-#workspaces,
-#custom-backlight,
-#custom-browser,
-#custom-cava_mviz,
-#custom-cycle_wall,
-#custom-dot_update,
-#custom-file_manager,
-#custom-keybinds,
-#custom-keyboard,
-#custom-light_dark,
-#custom-lock,
-#custom-hint,
-#custom-hypridle,
-#custom-menu,
-#custom-playerctl,
-#custom-power_vertical,
-#custom-power,
-#custom-quit,
-#custom-reboot,
-#custom-settings,
-#custom-spotify,
-#custom-swaync,
-#custom-tty,
-#custom-updater,
-#custom-weather,
-#custom-weather.clearNight,
-#custom-weather.cloudyFoggyDay,
-#custom-weather.cloudyFoggyNight,
-#custom-weather.default, 
-#custom-weather.rainyDay,
-#custom-weather.rainyNight,
-#custom-weather.severe,
-#custom-weather.showyIcyDay,
-#custom-weather.snowyIcyNight,
-#custom-weather.sunnyDay {
-    color: @foreground;
-	padding-right: 6px;
-	padding-left: 6px;;
-}
-
-#temperature.critical {
-    background-color: #ff0000;
-}
-
-@keyframes blink {
-    to {
-        color: #000000;
-    }
-}
-
-#backlight-slider slider,
-#pulseaudio-slider slider {
-    min-width: 0px;
-    min-height: 0px;
-    opacity: 0;
-    background-image: none;
-    border: none;
-    box-shadow: none;
-}
-
-#backlight-slider trough,
-#pulseaudio-slider trough {
-    min-width: 80px;
-    min-height: 5px;
-    border-radius: 5px;
-    background-color: #22252a;
-}
-
-#backlight-slider highlight,
-#pulseaudio-slider highlight {
-    min-height: 10px;
-    border-radius: 5px;
-    background-color: #ba5663;
-}
-
-#pulseaudio-slider,
-#pulseaudio {
-	color: @color13;
-}
-
-#pulseaudio.muted {
-    color: red;
-}
-
-#memory {
-	color: @sapphire;
+#temperature {
+    font-size: 14px;
+    background: #F8BBD0; /* Hồng trung tính */
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 #cpu {
-	color: @mauve;
+    color: #2E1A47; /* Tím đậm nhẹ */
+    padding: 0px 10px 0px 12px;
+    border-radius: 5px 0px 0px 5px;
+}
+
+#memory {
+    color: #FF99CC; /* Hồng đậm Sakura */
+    padding: 0px 10px 0px 0px;
+}
+
+#temperature {
+    color: #FFF0F5; /* Hồng rất nhạt */
+    padding: 0px 12px 0px 0px;
+    border-radius: 0px 5px 5px 0px;
+}
+
+#custom-window-name {
+    margin-right: 10px;
+    color: #2E1A47; /* Tím đậm nhẹ */
+}
+
+#custom-pacman-update-icon {
+    background-color: #FFF0F5; /* Hồng rất nhạt */
+    color: #2E1A47; /* Tím đậm nhẹ */
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+
+#custom-ip {
+    padding: 0 8px;
+    color: #000000; /* Hồng rất nhạt */
+    background: #FF99CC; /* Hồng đậm Sakura */
+    border-radius: 4px;
+    margin: 0 4px;
+}
+
+#custom-pacman-update {
+    color: #F8BBD0; /* Hồng trung tính */
+    margin: 5px 10px 5px 0px;
 }
 
 #battery {
-	color: @rosewater;
+    color: #FF4D4D; /* Hồng đậm Sakura */
+    margin-right: 5px;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
-#disk {
-	color: @sky;
+#custom-power {
+    color: #FF4D4D; /* Đỏ nhạt, giữ nguyên */
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 12px;
 }
 
-#temperature.critical {
-    background-color: @red;
+#my_apps {
+    font-size: 12px;
+    background-color: #FFF0F5; /* Hồng rất nhạt */
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px 5px 5px 5px;
 }
 
-#battery.critical:not(.charging) {
-	color: #f53c3c;
-	animation-name: blink;
-	animation-duration: 3.0s;
-	animation-timing-function: steps(12);
-	animation-iteration-count: infinite;
-	animation-direction: alternate;
+#bluetooth,
+#network,
+#pulseaudio,
+#backlight {
+    font-size: 12px;
+    background: #FFF0F5; /* Hồng rất nhạt */
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
-#custom-hypridle,
-#custom-lock,
-#idle_inhibitor {
-    color: @teal;
+#connections {
+    font-size: 12px;
+    color: #000000;
 }
 
-/*-----Indicators----*/
-#custom-hypridle.notactive,
-#idle_inhibitor.activated {
-	color: #39FF14;
+#backlight {
+    color: #2E1A47; /* Tím đậm nhẹ */
+    padding: 0px 5px 0px 10px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+#custom-wl-gammarelay-temperature {
+    font-size: 14px;
+    background: #F8BBD0; /* Hồng trung tính */
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#custom-wl-gammarelay-temperature {
+    color: #2E1A47; /* Tím đậm nhẹ */
+    padding: 0px 10px 0px 10px;
+}
+
+#pulseaudio {
+    color: #2E1A47; /* Tím đậm nhẹ */
+    padding: 0px 10px 0px 10px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+#custom-right-arr {
+    color: #FF99CC; /* Hồng đậm Sakura */
+}
+
+#bluetooth {
+    color: #2E1A47; /* Tím đậm nhẹ */
+    padding: 0px 10px 0px 10px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+#network {
+    color: #000000; /* Tím đậm nhẹ */
+    padding: 0px 14px 0px 10px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+#custom-dot {
+    color: #D8A7B1; /* Hồng nhạt trung tính */
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#custom-dot-alt {
+    color: #FF99CC; /* Hồng đậm Sakura */
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#custom-clock-icon {
+    background-color: #FFF0F5; /* Hồng rất nhạt */
+    color: #2E1A47; /* Tím đậm nhẹ */
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
 }
 
 #clock {
-	color: @foreground;
-    border-radius: 15px;
+    color: #2E1A47; /* Tím đậm nhẹ */
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 4px;
 }
 
-#custom-updates {
-    color: @yellow;
+#custom-music {
+  padding: 0 8px;
+  margin: 0 6px;
+  font-size: 16px;
+  border-radius: 6px;
+  color: #2E1A47;
 }
-#swaync{
-    color: #ffd700;}
+#custom-playerctl {
+  padding: 4px 8px;
+  border-radius: 6px;
+  background-color: #e799b8;
+  color: #2E1A47;
+  font-size: 13px;
+}
+#custom-playerctl.Playing {
+  font-weight: bold;
+  color: #FF99CC;
+}
+
+#custom-weather {
+  padding: 0 8px;
+  margin: 0 6px;
+  font-size: 16px;
+  background-color: #F8BBD0;
+  border-radius: 6px;
+  color: #2E1A47;
+}
+
+#custom-music:hover {
+  background-color: #FF99CC;
+  color: white;
+}
+
+#language {
+    color: #2E1A47; /* Tím đậm nhẹ */
+    margin-right: 5px;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#custom-swaync {
+    color: #2E1A47;
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+#idle_inhibitor {
+    color: #2E1A47; /* Tím đậm nhẹ */
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+/*----My apps----*/
+
+#custom-vesktop {
+    border-radius: 5px;
+    padding-left: 8px;
+    background: #F8BBD0;
+    color: #000000;
+    padding-right: 9px;
+    font-size: 12px;
+    margin: 0 4px;
+}
+#custom-zalo {
+    border-radius: 5px;
+    padding-left: 8px;
+    background: #F8BBD0;
+    color: #000000;
+    padding-right: 13px;
+    font-size: 12px;
+    margin: 0 4px;
+}
+#custom-telegram {
+    border-radius: 5px;
+    padding-left: 8px;
+    background: #F8BBD0;
+    color: #000000;
+    padding-right: 13px;
+    font-size: 12px;
+    margin: 0 4px;
+}
+#custom-facebook {
+    border-radius: 5px;
+    padding-left: 8px;
+    background: #F8BBD0;
+    color: #000000;
+    padding-right: 13px;
+    font-size: 12px;
+    margin: 0 4px;
+}
+#custom-edge {
+    border-radius: 5px;
+    padding-left: 8px;
+    background: #F8BBD0;
+    color: #000000;
+    padding-right: 13px;
+    font-size: 12px;
+    margin: 0 4px;
+}
+
+
+#custom-thunar {
+    border-radius: 5px;
+    padding-left: 8px;
+    background: #F8BBD0;
+    color: #000000;
+    padding-right: 13px;
+    font-size: 12px;
+    margin: 0 4px;
+}
+
+#custom-codium {
+    border-radius: 5px;
+    background: #F8BBD0;
+    color: #000000;
+    padding-right: 5px;
+    font-size: 12px;
+    margin: 0 4px;
+    padding-left: 8px;
+}
+
+#custom-librewolf {
+    border-radius: 5px;
+    background: #F8BBD0;
+    color: #000000;
+    padding-right: 13px;
+    padding-left: 8px;
+    font-size: 12px;
+    margin: 0 4px;
+}
+
+#custom-menu {
+    color: #2E1A47; /* Tím đậm nhẹ */
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#custom-power {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#custom-cava_mviz {
+    color: #FF99CC; /* Hồng đậm Sakura */
+}

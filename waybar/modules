@@ -194,6 +194,22 @@
 	}	
 },
 // GROUP
+"group/my_apps": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/vesktop",
+            "custom/thunar",
+            "custom/codium",
+            "custom/telegram",
+			"custom/facebook",
+			"custom/zalo",
+			"custom/edge",
+        ],
+        "drawer": {
+            "transition-duration": 0,
+            "transition-left-to-right": false
+        }
+},
 "group/motherboard": {
 	"orientation": "horizontal",
 	"modules": [
@@ -238,6 +254,8 @@
 },
 "group/connections": {
 	"orientation": "inherit",
+	//"orientation": "horizontal",
+
 	"drawer": {
 		"transition-duration": 500,
 		"children-class": "bluetooth",
@@ -246,6 +264,7 @@
 	"modules": [
 		"network",
 		"bluetooth",
+		"custom/ip" // Module mới hiển thị địa chỉ IP
 	]
 },                                     
 "backlight": {
@@ -475,8 +494,9 @@
 	"format-disconnected": "󰌙",
 	"tooltip-format": "{ipaddr}  {bandwidthUpBits}  {bandwidthDownBits}",
 	"format-linked": "󰈁 {ifname} (No IP)",
+	"interface": "wlan0",
 	"tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
-	"tooltip-format-ethernet": "{ifname} 󰌘",
+	"tooltip-format-ethernet": "{ifname}: {ipaddr}",
 	"tooltip-format-disconnected": "󰌙 Disconnected",
 	"max-length": 30,
 	"format-icons": [
@@ -665,9 +685,9 @@
 },  
 "custom/vesktop": {
         "format": " ",
-        "on-click": "/usr/bin/vesktop",
+        "on-click": "flatpak run com.microsoft.Edge --ozone-platform=wayland https://discord.com/channels/@me",
         "tooltip": true,
-        "tooltip-format": "Vesktop",
+        "tooltip-format": "Discord",
 },
 "custom/thunar": {
         "format": " ",
@@ -687,11 +707,45 @@
         "tooltip": true,
         "tooltip-format": "Telegram",
 },
-            
+"custom/facebook": {
+        "format": "📱",
+        "exec": "echo 'Facebook'",
+        "on-click": " flatpak run com.microsoft.Edge --ozone-platform=wayland https://www.facebook.com",
+        "return-type": "text",
+		"tooltip-format": "Facebook",
+        "tooltip": true
+
+},
+"custom/edge": {
+        "format": "🌐",
+        "exec": "echo 'Edge'",
+        "on-click": " flatpak run com.microsoft.Edge --ozone-platform=wayland ",
+        "return-type": "text",
+		"tooltip-format": "Edge",
+        "tooltip": true
+
+},
+"custom/zalo": {
+        "format": "💬",
+        "exec": "echo 'zalo'",
+        "on-click": "  flatpak run com.microsoft.Edge --ozone-platform=wayland https://chat.zalo.me/",
+        "return-type": "text",
+		"tooltip-format": "zalo",
+        "tooltip": true
+
+},
+
 // This is a custom cava visualizer
 "custom/cava_mviz": {
 	"exec": "~/.config/hypr/scripts/WaybarCava.sh",
 	"format": "{}"
+},
+"custom/ip": {
+        "format": "{}",
+        "interval": 5,
+        "exec": "~/.config/waybar/scripts/ip_address.sh",
+        "return-type": "text",
+        "tooltip": false
 },
 "custom/playerctl": {
 	"format": "<span>{}</span>",
@@ -706,6 +760,9 @@
 	"on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
 	"smooth-scrolling-threshold": 1,
 },
+
+
+
 "custom/power": {
 	"format": "⏻ ",
 	"on-click": "~/.config/hypr/scripts/Wlogout.sh",
@@ -714,27 +771,29 @@
 	"tooltip-format": "Left Click: Logout Menu\nRight Click: Change Blur",
 },
 "custom/swaync": {
-	"tooltip": true,
-	"tooltip-format": "Left Click: Launch Notification Center\nRight Click: Do not Disturb",
-	"format": "{icon} {}",
-	"format-icons": {
-		"notification": "<span foreground='red'><sup></sup></span>",
-		"none": "",
-		"dnd-notification": "<span foreground='red'><sup></sup></span>",
-		"dnd-none": "",
-		"inhibited-notification": "<span foreground='red'><sup></sup></span>",
-		"inhibited-none": "",
-		"dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
-		"dnd-inhibited-none": ""
-	},
-	"return-type": "json",
-	"exec-if": "which swaync-client",
-	"exec": "swaync-client -swb",
-	"on-click": "sleep 0.1 && swaync-client -t -sw",
-	"on-click-right": "swaync-client -d -sw",
-	"escape": true,
+  "tooltip": true,
+  "tooltip-format": "Left Click: Launch Notification Center\nRight Click: Do not Disturb",
+  "format": "{icon} {}",
+  "format-icons": {
+    "notification": "<span foreground='red'><sup></sup></span>",
+    "none": "",
+    "dnd-notification": "<span foreground='red'><sup></sup></span>",
+    "dnd-none": "",
+    "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+    "inhibited-none": "",
+    "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+    "dnd-inhibited-none": ""
+  },
+  "return-type": "json",
+  "exec-if": "which swaync-client",
+  "exec": "swaync-client -swb",                  // Hiển thị trạng thái
+  "on-click": "sleep 0.1 && swaync-client -t -sw", // Toggle control center
+  "on-click-right": "swaync-client -d -sw",       // Bật/tắt Do Not Disturb
+  "escape": true
 },
-// NOTE:! This is only for Arch and Arch Based Distros  depend: pacman-contrib
+
+
+
 "custom/updater": {
 	"format": " {}",
 	"exec": "checkupdates | wc -l",
@@ -744,6 +803,15 @@
 	"tooltip": true,
 	"tooltip-format": "Left Click: Update System\nArch Linux Only",
 },
+
+"custom/music": {
+  "format": "🎵",
+  "exec": "echo '🎵'",
+  "tooltip": true,
+  "on-click": "eww open music-window",
+  "on-click-right": "eww close music-window"
+},
+
 "custom/weather": {
 	"format": "{}",
 	"format-alt": "{alt}: {}",
