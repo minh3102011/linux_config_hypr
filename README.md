@@ -18,8 +18,8 @@ need dart-sass to run this config ags
 
 flatpak override md.obsidian.Obsidian --socket=wayland
 
-git clone https://github.com/InioX/matugen.git
+wget https://github.com/InioX/matugen/releases/download/v2.4.1/matugen-2.4.1-x86_64.tar.gz
 
-cd matugen
+tar -xvf matugen-2.3.0-x86_64.tar.gz
 
-cargo install --path .
+sudo mv matugen /usr/local/bin/
