@@ -17,3 +17,9 @@ sudo rsync -aAXv #restore
 need dart-sass to run this config ags
 
 flatpak override md.obsidian.Obsidian --socket=wayland
+
+git clone https://github.com/InioX/matugen.git
+
+cd matugen
+
+cargo install --path .
