@@ -57,7 +57,12 @@ class Wallpaper extends Service {
     async #setWallpaper(path: string) {
         this.#blockMonitor = true
 
-        // Kiểm tra file nguồn tồn tại
+        // Kiểm tra file nguồn tồn tại và không phải là file .gif
+        if (path.toLowerCase().endsWith(".gif")) {
+            console.warn("Skipping GIF file:", path);
+            this.#blockMonitor = false;
+            return;
+        }
         try {
             const stat = await Utils.execAsync(`stat "${path}"`);
             if (!stat) {
@@ -105,9 +110,11 @@ class Wallpaper extends Service {
     async #getRandomImageFromCache() {
         try {
             const output = await sh(`ls "${Cache}"`);
-            const files = output.split("\n").filter(file => file.trim()); // Lọc file rỗng
+            const files = output.split("\n").filter(file =>
+                file.trim() && !file.toLowerCase().endsWith(".gif")
+            ); // Lọc file rỗng và file .gif
             if (files.length === 0) {
-                console.warn("No images found in", Cache);
+                console.warn("No non-GIF images found in", Cache);
                 return;
             }
             const randomFile = files[Math.floor(Math.random() * files.length)];
